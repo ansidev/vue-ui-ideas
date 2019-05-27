@@ -1,0 +1,26 @@
+{
+  "name": "vue-ui-ideas",
+  "version": "1.0.0",
+  "description": "UI Ideas for VueJS from ansidev",
+  "main": "components/index.js",
+  "repository": "https://github.com/ansidev",
+  "author": "Le Minh Tri <ansidev@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "private": false,
+  "scripts": {
+    "storybook": "start-storybook"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@storybook/vue": "^5.0.11",
+    "babel-loader": "^8.0.6",
+    "babel-preset-vue": "^2.0.2",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "vue": "^2.6.10"
+  }
+}
