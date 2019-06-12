@@ -1,22 +1,39 @@
 <template>
   <div :class="['section-wrapper', titleColor, titleStyle]">
     <h3 class="section-container">
-      <span class="section-text">{{ text }}</span>
+      <span class="section-title">{{ title }}</span>
     </h3>
   </div>
 </template>
 <script>
+/**
+ * The section title UI Component.
+ * @displayName Section Title
+ * @author Le Minh Tri. <br/> Email: <ansidev@gmail.com>
+ */
 export default {
+  name: 'section-title',
   props: {
-    text: {
+    /**
+     * The title
+     */
+    title: {
       type: String,
       required: true
     },
+    /**
+     * The background color.
+     * Built in colors: `green`, `orange`, `pink`, `blue`, `red`, `yellow`, `black`
+     */
     color: {
       type: String,
       required: false,
       default: 'orange'
     },
+    /**
+     * The shape
+     * Built in shapes: `tab`, `arrow`
+     */
     shape: {
       type: String,
       required: false,
@@ -25,13 +42,13 @@ export default {
   },
   data() {
     return {
-      builtInColors: ['green', 'orange', 'pink', 'blue', 'red', 'yellow'],
+      builtInColors: ['green', 'orange', 'pink', 'blue', 'red', 'yellow', 'black'],
       builtInStyles: ['tab', 'arrow'],
     }
   },
   computed: {
     titleColor() {
-      return this.builtInColors.includes(this.color) ? `color-${this.color}` : this.color
+      return this.builtInColors.includes(this.color) ? `color-${this.color}` : ''
     },
     titleStyle() {
       return this.builtInStyles.includes(this.shape) ? this.shape : ''
@@ -50,6 +67,7 @@ $colors: (
   'red': ('background-color': #ff1f47, 'text-color': #fff),
   'blue': ('background-color': #0050eb, 'text-color': #fff),
   'yellow': ('background-color': #f9f871, 'text-color': #000),
+  'black': ('background-color': #000, 'text-color': #fff),
 );
 $size: 20px;
 
@@ -73,11 +91,11 @@ $size: 20px;
 
       }
 
-      &.default .section-text::after {
+      &.default .section-title::after {
         display: none;
       }
 
-      &.tab .section-text::after {
+      &.tab .section-title::after {
         border-bottom-width: 2 * $size;
         border-bottom-style: solid;
         border-bottom-color: map-get($color-data, 'background-color');
@@ -86,7 +104,7 @@ $size: 20px;
 
       &.arrow {
         border-bottom-width: 0;
-        & .section-text::after {
+        & .section-title::after {
           border-top: $size solid transparent;
           border-left-width: $size;
           border-left-style: solid;
@@ -119,7 +137,7 @@ $size: 20px;
       margin: 0;
     }
 
-    & .section-text::after {
+    & .section-title::after {
       content: "";
       width: 0;
       height: 0;
@@ -130,3 +148,35 @@ $size: 20px;
   }
 }
 </style>
+
+<docs>
+## Examples
+
+Section Title with color:
+
+```jsx
+<section-title title="Section Title with orange background color" color="orange" />
+<section-title title="Section Title with green background color" color="green" />
+<section-title title="Section Title with pink background color" color="pink" />
+<section-title title="Section Title with blue background color" color="blue" />
+<section-title title="Section Title with red background color" color="red" />
+<section-title title="Section Title with yellow background color" color="yellow" />
+<section-title title="Section Title with black background color" color="black" />
+<section-title title="Section Title with none background color" color="none" />
+```
+
+Section Title with shape:
+
+```jsx
+<section-title title="Section Title with tab style" shape="tab" />
+<section-title title="Section Title with arrow style" shape="arrow" />
+```
+
+Section Title with border radius:
+
+```jsx
+<section-title title="Section Title with default style" :border-radius="5" />
+<section-title title="Section Title with tab style" shape="tab" :border-radius="5" />
+<section-title title="Section Title with arrow style" shape="arrow" :border-radius="5" />
+```
+</docs>

@@ -1,6 +1,9 @@
 # Distributed directory
 dist/
 
+# Documentation directory
+docs/
+
 # Logs
 logs
 *.log
