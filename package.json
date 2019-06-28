@@ -3,19 +3,27 @@
   "version": "1.0.0",
   "description": "UI Ideas for VueJS from ansidev",
   "main": "components/index.js",
-  "repository": "https://github.com/ansidev",
+  "repository": "https://github.com/ansidev/vue-ui-ideas",
   "author": "Le Minh Tri <ansidev@gmail.com>",
   "license": "GPL-3.0-or-later",
   "private": false,
   "scripts": {
     "serve": "vue-styleguidist server",
-    "build": "vue-styleguidist build"
+    "clean": "rimraf dist",
+    "build:lib": "./scripts/build.sh",
+    "build:doc": "vue-styleguidist build",
+    "build": "npm run clean && npm run build:lib && npm run build:doc"
   },
   "devDependencies": {
+    "@vue/cli-service": "^3.8.4",
+    "css-loader": "^3.0.0",
     "node-sass": "^4.12.0",
+    "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
+    "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
-    "vue-styleguidist": "^3.14.3",
-    "webpack": "^4.33.0"
+    "vue-styleguidist": "^3.15.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.35.0"
   }
 }
