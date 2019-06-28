@@ -3,11 +3,14 @@
     <h3 class="section-container">
       <span class="section-title">{{ title }}</span>
     </h3>
+    <hr v-if="['arrow', 'diamond'].includes(shape)"/>
   </div>
 </template>
 <script>
 /**
  * The section title UI Component.
+ *
+ * Inspired by https://codepen.io/NzNcn/pen/RVKwdL
  * @displayName Section Title
  * @author Le Minh Tri. <br/> Email: <ansidev@gmail.com>
  */
@@ -43,7 +46,7 @@ export default {
   data() {
     return {
       builtInColors: ['green', 'orange', 'pink', 'blue', 'red', 'yellow', 'black'],
-      builtInStyles: ['tab', 'arrow'],
+      builtInStyles: ['tab', 'arrow', 'trapezoid', 'dome', 'diamond'],
     }
   },
   computed: {
@@ -70,13 +73,26 @@ $colors: (
   'black': ('background-color': #000, 'text-color': #fff),
 );
 $size: 20px;
+$margin: 15px;
 
 .section-wrapper {
   border-bottom-width: 2px;
   border-bottom-style: solid;
   display: block;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: $margin;
+  margin-bottom: $margin;
+
+  &.arrow, &.diamond {
+    margin-bottom: 2 * $margin;
+  }
+
+  &.trapezoid .section-container {
+    margin-left: $size;
+  }
+
+  &.diamond .section-container {
+    margin-left: $size;
+  }
 
   // color
   @each $color, $color-data in $colors {
@@ -95,13 +111,6 @@ $size: 20px;
         display: none;
       }
 
-      &.tab .section-title::after {
-        border-bottom-width: 2 * $size;
-        border-bottom-style: solid;
-        border-bottom-color: map-get($color-data, 'background-color');
-        border-right: $size solid transparent;
-      }
-
       &.arrow {
         border-bottom-width: 0;
         & .section-title::after {
@@ -111,15 +120,57 @@ $size: 20px;
           border-left-color: map-get($color-data, 'background-color');
           border-bottom: $size solid transparent;
         }
+        hr {
+          margin: -1 * $size - 1px 0px $size - 1px 0px;
+          border: 1px solid map-get($color-data, 'background-color');
+        }
       }
-    }
-  }
 
-  &.rounded {
-    & .section-container {
-      & span {
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+      &.diamond {
+        border-bottom-width: 0;
+        & .section-title::before {
+          border-top: $size solid transparent;
+          border-right-width: $size;
+          border-right-style: solid;
+          border-right-color: map-get($color-data, 'background-color');
+          border-bottom: $size solid transparent;
+        }
+        & .section-title::after {
+          border-top: $size solid transparent;
+          border-left-width: $size;
+          border-left-style: solid;
+          border-left-color: map-get($color-data, 'background-color');
+          border-bottom: $size solid transparent;
+        }
+        hr {
+          margin: -1 * $size - 1px 0px $size - 1px 0px;
+          border: 1px solid map-get($color-data, 'background-color');
+        }
+      }
+
+      &.dome .section-title {
+        border-radius: $size $size 0 0;
+      }
+
+      &.tab .section-title::after {
+        border-bottom-width: 2 * $size;
+        border-bottom-style: solid;
+        border-bottom-color: map-get($color-data, 'background-color');
+        border-right: $size solid transparent;
+      }
+
+      &.trapezoid .section-title::before {
+        border-width: 2 * $size $size 0 0;
+        border-style: solid;
+        border-color: transparent;
+        border-right-color: map-get($color-data, 'background-color');
+      }
+
+      &.trapezoid .section-title::after {
+        border-bottom-width: 2 * $size;
+        border-bottom-style: solid;
+        border-bottom-color: map-get($color-data, 'background-color');
+        border-right: $size solid transparent;
       }
     }
   }
@@ -137,6 +188,14 @@ $size: 20px;
       margin: 0;
     }
 
+    & .section-title::before {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: 0px;
+      left: -1 * $size;
+    }
     & .section-title::after {
       content: "";
       width: 0;
@@ -168,15 +227,10 @@ Section Title with color:
 Section Title with shape:
 
 ```jsx
-<section-title title="Section Title with tab style" shape="tab" />
 <section-title title="Section Title with arrow style" shape="arrow" />
-```
-
-Section Title with border radius:
-
-```jsx
-<section-title title="Section Title with default style" :border-radius="5" />
-<section-title title="Section Title with tab style" shape="tab" :border-radius="5" />
-<section-title title="Section Title with arrow style" shape="arrow" :border-radius="5" />
+<section-title title="Section Title with diamond style" shape="diamond" />
+<section-title title="Section Title with dome style" shape="dome" />
+<section-title title="Section Title with tab style" shape="tab" />
+<section-title title="Section Title with trapezoid style" shape="trapezoid" />
 ```
 </docs>
