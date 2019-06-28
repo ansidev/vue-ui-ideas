@@ -35,6 +35,9 @@ do
 
   ./node_modules/.bin/vue-cli-service build --target lib --name ${COMPONENT_NAME} --dest ${OUTPUT_DIR} ${VUE_COMPONENT}
   rm ${OUTPUT_DIR}/demo.html
+
+  echo Generating files for npm package
+
   cat > ${OUTPUT_DIR}/package.json <<EOL
 {
   "name": "${PACKAGE_NAME}",
@@ -43,8 +46,19 @@ do
   "repository": "https://github.com/ansidev/vue-ui-ideas",
   "author": "Le Minh Tri <ansidev@gmail.com>",
   "license": "GPL-3.0-or-later",
-  "private": false
+  "private": false,
+  "keywords": [
+    "vue",
+    "component",
+    "ui component",
+    "section title",
+    "header title"
+  ]
 }
+EOL
+  cat > ${OUTPUT_DIR}/README.md <<EOL
+# ${COMPONENT_NAME}
+Official document is located at https://ds.ansidev.xyz
 EOL
   # npm publish ${OUTPUT_DIR}
 done
