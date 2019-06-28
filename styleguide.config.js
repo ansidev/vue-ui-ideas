@@ -4,12 +4,8 @@ module.exports = {
   title: 'Vue UI Component Idea from ansidev',
   sections: [
     {
-      name: 'Introduction',
-      content: 'README.md'
-    },
-    {
       name: 'Title',
-      components: 'src/components/titles/*.vue'
+      components: 'src/components/title/*.vue'
     },
   ],
   styleguideDir: 'docs',

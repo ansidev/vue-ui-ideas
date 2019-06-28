@@ -1,18 +1,18 @@
-## Vue UI Ideas
+# Vue UI Ideas
 
 Vue UI Component Ideas written in Vue.
 
-## Live demo
+# Live demo
 
 You can visit https://ds.ansidev.xyz to view the live demo.
 
-## Copyright
+# Copyright
 Author: Le Minh Tri.
 
 Email: ansidev@gmail.com.
 
 Homepage: https://ansidev.xyz/.
 
-## Contribution
+# Contribution
 
 Contributions are welcome.
