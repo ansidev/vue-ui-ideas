@@ -35,7 +35,7 @@ export default {
     },
     /**
      * The shape
-     * Built in shapes: `tab`, `arrow`
+     * Built in shapes: `tab`, `arrow`, `diamond`, `dome`, `trapezoid`
      */
     shape: {
       type: String,
