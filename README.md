@@ -1,5 +1,7 @@
 # Vue UI Ideas
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ansidev/vue-ui-ideas.svg)](https://greenkeeper.io/)
+
 Vue UI Component Ideas written in Vue.
 
 # Live demo
